@@ -17,8 +17,6 @@ public interface StudentDao {
 
     /**
      * 根据id查询学生信息
-     *
-     * @param id 学生id
      * @return 返回一个学生
      */
     Student selectOne(Integer id);
