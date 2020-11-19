@@ -16,7 +16,7 @@ public interface StudentDao {
     List<Student> findAll();
 
     /**
-     * 根据id查询学生信息
+     * @param id 根据id查询学生信息
      * @return 返回一个学生
      */
     Student selectOne(Integer id);
