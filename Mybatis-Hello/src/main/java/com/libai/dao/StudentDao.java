@@ -48,10 +48,10 @@ public interface StudentDao {
     /**
      * 根据姓名模糊查询
      *
-     * @param studentName 要查询的姓名
+     * @param student 将要查询的信息传递给student对象
      * @return 查询到的学生信息的列表
      */
-    List<Student> findStudentByName(String studentName);
+    List<Student> findStudentByName(Student student);
 
     /**
      * 查询总数

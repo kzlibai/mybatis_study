@@ -39,9 +39,11 @@ public class MybatisCRUDTest {
      */
     @Test
     public void testFindStudentByName() {
-        List<Student> list = studentDao.findStudentByName("%李%");
-        for (Student student : list) {
-            System.out.println(student);
+        Student student = new Student();
+        student.setStudentName("%李%");
+        List<Student> list = studentDao.findStudentByName(student);
+        for (Student s : list) {
+            System.out.println(s);
         }
     }
 

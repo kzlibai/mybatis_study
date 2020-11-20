@@ -2,6 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="com.libai.dao.StudentDao">
 
     <resultMap id="studentMap" type="com.libai.pojo.Student">
@@ -11,15 +13,18 @@
         <result column="score" property="score"/>
         <result column="birthday" property="birthday"/>
         <result column="address" property="address"/>
+        <!-- collection 是用于建立一对多中集合属性的对应关系  ofType 用于指定集合元素的数据类型-->
+        <collection property="accounts" ofType="account">
+            <id column="id" property="id"/>
+            <result column="studentId" property="studentId"/>
+            <result column="money" property="money"/>
+        </collection>
     </resultMap>
-    <!--id 标签：用于指定主键字段-->
-    <!--result 标签：用于指定非主键字段-->
-    <!--column 属性：用于指定数据库列名-->
-    <!--property 属性：用于指定实体类属性名称-->
+
 
     <!-- 配置查询所有操作 -->
     <select id="findAll" resultMap="studentMap">
-        select * from student
+        select s.*,a.id,a.studentid,a.money from student s left join account a on s.id = a.studentId
     </select>
     <!--根据id查询学生-->
     <select id="selectOne" resultMap="studentMap" parameterType="Integer">
@@ -40,8 +45,17 @@
         delete from student where id = #{id}
     </delete>
     <!--根据姓名模糊查询-->
-    <select id="findStudentByName" resultMap="studentMap" parameterType="String">
-        select * from student where name like #{name}
+    <sql id="selectAllStudent">select * from student</sql>
+    <select id="findStudentByName" resultMap="studentMap" parameterType="student">
+        <include refid="selectAllStudent"/>
+        <where>
+            <if test="studentName != null and studentName != ''">
+                and name like #{studentName}
+            </if>
+            <if test="address != null and address !=''">
+                and address like #{address}
+            </if>
+        </where>
     </select>
 
     <!--记录总数-->

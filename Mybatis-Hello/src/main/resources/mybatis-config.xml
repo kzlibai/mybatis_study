@@ -5,6 +5,10 @@
 <!--mybatis的主配置文件-->
 <configuration>
     <properties resource="db.properties"/>
+    <!--配置别名-->
+    <typeAliases>
+        <package name="com.libai.pojo"/>
+    </typeAliases>
     <!--配置环境-->
     <environments default="mysql">
         <!--配置mysql的环境-->
@@ -22,7 +26,12 @@
         </environment>
     </environments>
     <!--指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件-->
+<!--    <mappers>-->
+<!--        <mapper resource="com/libai/dao/StudentDao.xml"/>-->
+<!--    </mappers>-->
     <mappers>
-        <mapper resource="com/libai/dao/StudentDao.xml"/>
+        <package name="com.libai.dao"/>
     </mappers>
+
+
 </configuration>

@@ -24,9 +24,10 @@ public class MyBatisTest {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             StudentDao mapper = session.getMapper(StudentDao.class);
             List<Student> studentList = mapper.findAll();
-            Student student = mapper.selectOne(1);
-            System.out.println(studentList);
-            System.out.println(student);
+            for (Student s:studentList){
+                System.out.println("----每个用户的内容----");
+                System.out.println(s);
+            }
         }
     }
 }

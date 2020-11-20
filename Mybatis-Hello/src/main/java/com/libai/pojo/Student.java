@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 学生实体类
@@ -21,6 +22,7 @@ public class Student {
     private Float score;
     private Date birthday;
     private String address;
+    private List<Account> accounts;
 
     public Student(String studentName, Integer sex, Float score, Date birthday, String address) {
         this.studentName = studentName;
