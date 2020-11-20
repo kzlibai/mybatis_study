@@ -3,12 +3,49 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.libai.dao.StudentDao">
+
+    <resultMap id="studentMap" type="com.libai.pojo.Student">
+        <id column="id" property="id"/>
+        <result column="name" property="studentName"/>
+        <result column="sex" property="sex"/>
+        <result column="score" property="score"/>
+        <result column="birthday" property="birthday"/>
+        <result column="address" property="address"/>
+    </resultMap>
+    <!--id 标签：用于指定主键字段-->
+    <!--result 标签：用于指定非主键字段-->
+    <!--column 属性：用于指定数据库列名-->
+    <!--property 属性：用于指定实体类属性名称-->
+
     <!-- 配置查询所有操作 -->
-    <select id="findAll" resultType="com.libai.pojo.Student">
+    <select id="findAll" resultMap="studentMap">
         select * from student
     </select>
     <!--根据id查询学生-->
-    <select id="selectOne" resultType="com.libai.pojo.Student">
+    <select id="selectOne" resultMap="studentMap" parameterType="Integer">
         select * from student where id = #{id}
+    </select>
+    <!--新增一个学生-->
+    <insert id="saveStudent" parameterType="com.libai.pojo.Student">
+        insert into student(name,sex,score,birthday,address)
+                    values (#{studentName},#{sex},#{score},#{birthday},#{address})
+    </insert>
+    <!--修改一个学生的信息-->
+    <update id="updateStudent" parameterType="com.libai.pojo.Student">
+        update student set name=#{studentName},sex=#{sex},score=#{score},birthday=#{birthday},address=#{address}
+                       where id=#{id}
+    </update>
+    <!--删除一个学生的信息-->
+    <delete id="delStudent" parameterType="com.libai.pojo.Student">
+        delete from student where id = #{id}
+    </delete>
+    <!--根据姓名模糊查询-->
+    <select id="findStudentByName" resultMap="studentMap" parameterType="String">
+        select * from student where name like #{name}
+    </select>
+
+    <!--记录总数-->
+    <select id="findTotal" resultType="int">
+        select count(*) from student;
     </select>
 </mapper>

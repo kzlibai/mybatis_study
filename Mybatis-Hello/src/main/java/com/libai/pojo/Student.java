@@ -16,9 +16,17 @@ import java.util.Date;
 @ToString
 public class Student {
     private Integer id;
-    private String name;
+    private String studentName;
     private Integer sex;
     private Float score;
     private Date birthday;
     private String address;
+
+    public Student(String studentName, Integer sex, Float score, Date birthday, String address) {
+        this.studentName = studentName;
+        this.sex = sex;
+        this.score = score;
+        this.birthday = birthday;
+        this.address = address;
+    }
 }
