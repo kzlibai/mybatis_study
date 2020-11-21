@@ -8,16 +8,22 @@
         <id column="id" property="id"/>
         <result column="studentId" property="studentId"/>
         <result column="money" property="money"/>
+        <association property="student" javaType="student"
+                     select="com.libai.dao.StudentDao.selectOne"
+                     column="studentId"></association>
         <!--用于指定从表方的引用实体属性的-->
-        <association property="student" javaType="student">
-            <id column="id" property="id"/>
-            <result column="name" property="studentName"/>
-            <result column="sex" property="sex"/>
-            <result column="birthday" property="birthday"/>
-            <result column="address" property="address"/>
-        </association>
+<!--        <association property="student" javaType="student">-->
+<!--            <id column="id" property="id"/>-->
+<!--            <result column="name" property="studentName"/>-->
+<!--            <result column="sex" property="sex"/>-->
+<!--            <result column="birthday" property="birthday"/>-->
+<!--            <result column="address" property="address"/>-->
+<!--        </association>-->
     </resultMap>
+<!--    <select id="findAll" resultMap="accountMap">-->
+<!--        select a.*,s.name,s.address from account a,student s where a.studentId = s.id-->
+<!--    </select>-->
     <select id="findAll" resultMap="accountMap">
-        select a.*,s.name,s.address from account a,student s where a.studentId = s.id
+        select * from account
     </select>
 </mapper>

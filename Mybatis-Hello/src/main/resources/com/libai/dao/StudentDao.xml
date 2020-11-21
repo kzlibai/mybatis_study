@@ -5,6 +5,7 @@
 
 
 <mapper namespace="com.libai.dao.StudentDao">
+    <cache></cache>
 
     <resultMap id="studentMap" type="com.libai.pojo.Student">
         <id column="id" property="id"/>
@@ -27,7 +28,7 @@
         select s.*,a.id,a.studentid,a.money from student s left join account a on s.id = a.studentId
     </select>
     <!--根据id查询学生-->
-    <select id="selectOne" resultMap="studentMap" parameterType="Integer">
+    <select id="selectOne" resultMap="studentMap" parameterType="Integer" useCache="true">
         select * from student where id = #{id}
     </select>
     <!--新增一个学生-->

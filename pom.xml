@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>Mybatis-Hello</module>
+        <module>Mybatis-Annotation</module>
     </modules>
 
     <dependencies>

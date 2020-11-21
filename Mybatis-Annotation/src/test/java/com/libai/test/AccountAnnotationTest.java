@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class AccountTest {
+public class AccountAnnotationTest {
     String resource = "mybatis-config.xml";
     InputStream inputStream;
     SqlSessionFactory sqlSessionFactory;
@@ -23,9 +23,12 @@ public class AccountTest {
 
     @Test
     public void testFindAll(){
-        List<Account> list = accountDao.findAll();
-        //for (Account as:list) System.out.println(as);
+        List<Account> accounts = accountDao.findAll();
+        for (Account account:accounts) System.out.println(account);
     }
+
+
+
 
     @Before //test方法执行之前要执行的方法
     public void init() throws IOException {

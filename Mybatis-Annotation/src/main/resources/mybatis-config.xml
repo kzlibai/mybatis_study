@@ -2,7 +2,7 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<!--mybatis的主配置文件-->
+<!--annotation配置文件-->
 <configuration>
     <properties resource="db.properties"/>
     <!-- 打印查询语句 -->
@@ -12,7 +12,6 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
-
     <!--配置别名-->
     <typeAliases>
         <package name="com.libai.pojo"/>
@@ -33,13 +32,8 @@
             </dataSource>
         </environment>
     </environments>
-    <!--指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件-->
-<!--    <mappers>-->
-<!--        <mapper resource="com/libai/dao/StudentDao.xml"/>-->
-<!--    </mappers>-->
+    <!--配置映射信息-->
     <mappers>
         <package name="com.libai.dao"/>
     </mappers>
-
-
 </configuration>
